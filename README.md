@@ -45,25 +45,36 @@ Testing C code properly can be a challenge — dependencies, side-effects, memor
 Minimal test runner example:
 
 ```c
-#include <c-bed/c-bed.h>
-#include "src/mycode.c"
+	#include <c-bed/c-bed.h>
+	#include "path.c"
 
-void test_my_function_returns_expected()
-{
-    ASSERT_EQ(42, my_function("foo"));
-}
+	void fname_should_find_filename_from_path()
+	{
+		char *path = "/usr/home/martin/.bashrc";
+		char *file = fname(path);
 
-int main(int argc, char *argv[])
-{
-    C_BED_TEST tests[] =
-    {
-        UNIT_TEST(test_my_function_returns_expected)
-    };
+		ASSERT_STR_EQ(".bashrc", file);
+	}
 
-    return RUN_TESTS(tests);
-}
+	int main(int argc, char *argv[])
+	{
+		C-BED_TEST tests[] =
+		{
+			UNIT_TEST(fname_should_find_filename_from_path);
+		};
+
+		return RUN_TESTS(tests);
+	}
+
 ```
-
+And the output looks like this
+```c
+	Running 1 test(s)
+	---------------------------------------------------------------------------
+	fname_should_find_filename_from_path                                 [PASS]
+	---------------------------------------------------------------------------
+	Passed 1, Failed 0.
+```
 See worked examples in the documentation: [https://www.clibs.co.uk/doc/c-bed/c-bed/example.html](https://www.clibs.co.uk/doc/c-bed/c-bed/example.html)
 
 ## License
