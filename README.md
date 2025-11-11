@@ -63,7 +63,7 @@ Minimal test runner example:
 	{
 		C-BED_TEST tests[] =
 		{
-			UNIT_TEST(fname_should_find_filename_from_path);
+			UNIT_TEST(fname_should_find_filename_from_path)
 		};
 
 		return RUN_TESTS(tests);
